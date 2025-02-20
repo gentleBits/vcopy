@@ -1,0 +1,87 @@
+{
+  "name": "vcopy",
+  "displayName": "VCopy",
+  "icon": "icon.png",
+  "description": "Copy workspace file structure and contents to clipboard",
+  "version": "0.5.5",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:vcopy.generate"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vcopy.generate",
+        "title": "VCopy: Generate & Copy Workspace Content"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "vcopy.generate",
+        "key": "cmd+alt+c",
+        "mac": "cmd+alt+c",
+        "win": "ctrl+alt+c",
+        "linux": "ctrl+alt+c",
+        "when": "workspaceFolderCount > 0"
+      },
+      {
+        "command": "vcopy.generate",
+        "key": "cmd+shift+c",
+        "mac": "cmd+shift+c",
+        "when": "workspaceFolderCount > 0"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "VCopy Settings",
+      "properties": {
+        "vcopy.footerText": {
+          "type": "string",
+          "editPresentation": "multilineText",
+          "default": "\n\n---------------\nJust tell me how to edit the files to make the changes.\nDon't give me back entire files.\nRestate the task, explain the solution and just show me the edits I need to make.\n---------------\n\n\n",
+          "description": "Text appended to the end of the copied output"
+        },
+        "vcopy.headerText": {
+          "type": "string",
+          "editPresentation": "multilineText",
+          "default": "I am working with you on code in a git repository.\nHere are summaries of some files present in my git repo.\n\n",
+          "description": "Text prepended at the beginning of the copied output"
+        },
+        "vcopy.useEntireTree": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, shows the full workspace file tree. Otherwise, only shows the tree of currently open files."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "test-compile": "tsc -p ./",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.70.0",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "@vscode/test-electron": "^2.3.9",
+    "esbuild": "^0.25.0",
+    "eslint": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^4.5.5"
+  }
+}
