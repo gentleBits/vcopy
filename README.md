@@ -1,14 +1,7 @@
 # VCopy, From editor to AI and back — effortlessly.
 
 VCopy is a clipboard bridge between code editors and AI assistants. It enables seamless transfer of code files to your preferred AI model for discussion, then lets you copy refined instructions back to tools like GitHub Copilot or Cursor, helping overcome development blockers.
- 
-## Features
 
-- Seamlessly extract code from all active editor tabs.
-- Auto-generate a navigable file tree of your project.
-- Preserve syntax highlighting with language-specific markers.
-- Customize header and footer messages to suit your workflow.
-- Trigger the functionality instantly via dedicated keyboard shortcuts.
 
 ## Usage
 
@@ -21,34 +14,19 @@ VCopy is a clipboard bridge between code editors and AI assistants. It enables s
    - Capture and format each file's content with accurate syntax highlighting.
    - Append any preset header and footer texts.
    - Copy the complete output to your clipboard
+4. Paste the text in your favorite AI model chat textbox. Explain the task and continue the session until a solution is reached.
+5. Copy the entire AI model output and use with AI tools (github copilot, cursor)
 
 ## Extension Settings
-
-This extension contributes the following settings:
-
-* `vcopy.footerText`: Text to append at the end of the copied output. Supports multiline text.
-
-## Default Footer
-
-By default, VCopy adds a footer that helps AI assistants understand how to process the copied content. You can customize this in the settings.
+You can customize VCopy’s behavior using the following settings:
+ 
+* `vcopy.headerText`: Prepended to the snippet. Useful for adding context or instructions for the AI.
+* `vcopy.footerText`: Appended to the snippet. Ideal for providing reminders or disclaimers.
+* `vcopy.useEntireTree`: When true, VCopy includes a complete workspace file map instead of just open files.
 
 ## Requirements
 
 - VS Code 1.70.0 or higher
-
-## Known Issues
-
-None at this time.
-
-## Release Notes
-
-### 0.0.1
-
-- Initial release
-- Basic file copying functionality
-- Tree structure generation
-- Configurable footer text
-- Keyboard shortcuts
 
 ## Contributing
 

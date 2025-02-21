@@ -1,9 +1,27 @@
-# Change Log
+# Changelog
 
-All notable changes to the "vcopy" extension will be documented in this file.
+All notable changes to the VCopy extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.7.0] - 2024-02-10
 
+### Added
+- Added support for showing complete workspace file tree via `useEntireTree` setting
+- Git repository file listing support when `useEntireTree` is enabled
+- Progress notification during file generation
+
+### Changed
+- Improved file tree visualization with ASCII art
+- Enhanced error handling and messages
+- Updated header/footer default text
+
+## [0.6.0] - 2024-02-01
+
+### Added
 - Initial release
+- Custom header and footer text support
+- File tree visualization
+- Syntax highlighting in output
+- Keyboard shortcuts for all platforms
