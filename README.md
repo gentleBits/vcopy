@@ -2,26 +2,25 @@
 
 VCopy is a clipboard bridge between code editors and AI assistants. It enables seamless transfer of code files to your preferred AI model for discussion, then lets you copy refined instructions back to tools like GitHub Copilot or Cursor, helping overcome development blockers.
  
-
 ## Features
 
-- Copy content from all open tabs in the current tab group
-- Generate a tree structure of the copied files
-- Files are copied with proper syntax highlighting markers
-- Customizable footer text
-- Easy-to-use keyboard shortcuts
+- Seamlessly extract code from all active editor tabs.
+- Auto-generate a navigable file tree of your project.
+- Preserve syntax highlighting with language-specific markers.
+- Customize header and footer messages to suit your workflow.
+- Trigger the functionality instantly via dedicated keyboard shortcuts.
 
 ## Usage
 
-1. Open the files you want to copy in VS Code tabs
-2. Use one of these keyboard shortcuts:
-   - `Cmd+Alt+C` (macOS) / `Ctrl+Alt+C` (Windows/Linux)
+1. Open the desired files in your VS Code tabs.
+2. Activate the extension using your keyboard shortcut:
    - `Cmd+Shift+C` (macOS)
-3. The extension will:
-   - Generate a tree structure of your files
-   - Copy the file contents with proper syntax highlighting
-   - Add the configured footer text (if any)
-   - Copy everything to your clipboard
+   - `Ctrl+Shift+C` (Windows/Linux)
+3. The extension will then:
+   - Build a visual file tree of your workspace.
+   - Capture and format each file's content with accurate syntax highlighting.
+   - Append any preset header and footer texts.
+   - Copy the complete output to your clipboard
 
 ## Extension Settings
 
