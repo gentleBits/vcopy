@@ -1,6 +1,7 @@
-# VCopy
+# VCopy, From editor to AI and back — effortlessly.
 
-VCopy is a Visual Studio Code extension that helps you quickly copy the structure and contents of your workspace files to the clipboard in a formatted way.
+VCopy is a clipboard bridge between code editors and AI assistants. It enables seamless transfer of code files to your preferred AI model for discussion, then lets you copy refined instructions back to tools like GitHub Copilot or Cursor, helping overcome development blockers.
+ 
 
 ## Features
 
