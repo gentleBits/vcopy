@@ -54,7 +54,16 @@ export function activate(context: vscode.ExtensionContext) {
                 for (const tab of activeGroup.tabs) {
                     if (tab.input && (tab.input as vscode.TabInputText).uri) {
                         const uri = (tab.input as vscode.TabInputText).uri;
-                        const doc = await vscode.workspace.openTextDocument(uri);
+                        let doc;
+                        try {
+                            doc = await vscode.workspace.openTextDocument(uri);
+                        } catch (error) {
+                            // For binary files (e.g. images), add to file tree and skip content.
+                            relativePaths.push(vscode.workspace.asRelativePath(uri));
+                            result += `\n// Skipped ${uri.fsPath}: Cannot open file as text.\n`;
+                            continue;
+                        }
+
                         const filePath = doc.uri.fsPath;
                         const relPath = vscode.workspace.asRelativePath(doc.uri);
                         relativePaths.push(relPath);
