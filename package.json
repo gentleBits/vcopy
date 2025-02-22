@@ -4,7 +4,7 @@
   "displayName": "VCopy",
   "icon": "img/icon.png",
   "description": "From editor to AI and back—effortlessly.",
-  "version": "0.7.0",
+  "version": "0.7.7",
   "engines": {
     "vscode": "^1.70.0"
   },
