@@ -2,7 +2,7 @@
   "name": "vcopy",
   "publisher": "GentleBits",
   "displayName": "VCopy",
-  "icon": "icon.png",
+  "icon": "img/icon.png",
   "description": "From editor to AI and back—effortlessly.",
   "version": "0.7.0",
   "engines": {
