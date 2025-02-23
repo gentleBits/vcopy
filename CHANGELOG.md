@@ -5,7 +5,7 @@ All notable changes to the VCopy extension will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.7.0] - 2024-02-10
+## [0.7.7] - 2024-02-23
 
 ### Added
 - Added support for showing complete workspace file tree via `useEntireTree` setting
@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enhanced error handling and messages
 - Updated header/footer default text
 
-## [0.6.0] - 2024-02-01
+## [0.6.0] - 2024-02-21
 
 ### Added
 - Initial release
