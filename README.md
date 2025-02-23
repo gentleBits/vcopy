@@ -2,7 +2,7 @@
 
 VCopy, inspired by [aider](https://github.com/Aider-AI/aider)  /copy-context command, is a clipboard bridge between code editors and AI assistants. It enables seamless transfer of code files to advanced AI models such as o1 pro, R1, Grok, Qwen, and others for discussion, then lets you copy refined instructions back to tools like GitHub Copilot or Cursor, helping overcome development blockers.
 
-![usage](img/vcopy_usage.gif)
+![usage](https://github.com/gentleBits/vcopy/blob/main/img/vcopy_usage.gif?raw=true)
 
 ## Usage
 
