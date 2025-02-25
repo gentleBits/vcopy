@@ -5,6 +5,17 @@ All notable changes to the VCopy extension will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.8] - 2024-02-23
+
+### Added
+- Token counting functionality using tiktoken library
+- Display token count in the progress notification
+- Format token count with k/m suffixes for readability
+
+### Changed
+- Improved progress notification with more detailed status messages
+- Enhanced user feedback during clipboard operations
+
 ## [0.7.7] - 2024-02-23
 
 ### Added

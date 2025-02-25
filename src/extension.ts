@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import { exec } from 'child_process';
+import { encoding_for_model } from 'tiktoken';
 
 function buildTreeFromPaths(paths: string[]): string {
     // Build a nested object representing the folder structure
@@ -34,6 +35,16 @@ function buildTreeFromPaths(paths: string[]): string {
     return buildLines(tree).join('\n');
 }
 
+// Format token count with k/m suffix for readability (e.g., 10700 -> "10.7k")
+function formatTokenCount(count: number): string {
+    if (count >= 1000000) {
+        return `${(count / 1000000).toFixed(1)}m`;
+    } else if (count >= 1000) {
+        return `${(count / 1000).toFixed(1)}k`;
+    }
+    return count.toString();
+}
+
 export function activate(context: vscode.ExtensionContext) {
     const disposable = vscode.commands.registerCommand('vcopy.generate', async () => {
         try {
@@ -47,9 +58,12 @@ export function activate(context: vscode.ExtensionContext) {
 
             await vscode.window.withProgress({
                 location: vscode.ProgressLocation.Notification,
-                title: "Generating and copying files to clipboard...",
+                title: "VCopy",
                 cancellable: false
             }, async (progress) => {
+                // Start with initial message
+                progress.report({ message: 'Generating text for clipboard...' });
+
                 let result = '';
                 for (const tab of activeGroup.tabs) {
                     if (tab.input && (tab.input as vscode.TabInputText).uri) {
@@ -117,8 +131,22 @@ export function activate(context: vscode.ExtensionContext) {
                 const combinedOutput = `<file_map>\n${tree}\n</file_map>\n\n` + result;
                 const finalOutput = (headerText ? headerText + '\n' : '') + combinedOutput + (footerText ? '\n' + footerText : '');
                 
+                // Count tokens using tiktoken
+                const model = "gpt-3.5-turbo";
+                const encoder = encoding_for_model(model);
+                const tokens = encoder.encode(finalOutput);
+                const tokenCount = tokens.length;
+                encoder.free();
+                
                 await vscode.env.clipboard.writeText(finalOutput);
-                // progress.report({ message: "Content copied to clipboard!" });
+                
+                // Update progress notification with completion message
+                progress.report({ 
+                    message: `Copied ${formatTokenCount(tokenCount)} tokens to clipboard`,
+                    increment: 100 
+                });
+                
+                // Keep the notification visible for exactly 2 seconds
                 await new Promise(resolve => setTimeout(resolve, 2000));
             });
         } catch (error) {
