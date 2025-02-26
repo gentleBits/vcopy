@@ -1,2 +1,5 @@
 // ...existing rules...
 img/vcopy_usage.gif
+
+# Include the WASM file explicitly
+!dist/tiktoken_bg.wasm

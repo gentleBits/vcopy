@@ -3,13 +3,19 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { exec } from 'child_process';
 import { encoding_for_model } from 'tiktoken';
+import { configureTiktokenWasmPath } from './wasm-path';
+
+// Configure tiktoken to use the correct WASM file path
+configureTiktokenWasmPath();
 
 function buildTreeFromPaths(paths: string[]): string {
     // Build a nested object representing the folder structure
     const tree: Record<string, any> = {};
+    
     for (const p of paths) {
         const parts = p.split(/[\\/]/);
         let current = tree;
+        
         for (const part of parts) {
             if (!current[part]) {
                 current[part] = {};
@@ -17,7 +23,7 @@ function buildTreeFromPaths(paths: string[]): string {
             current = current[part];
         }
     }
-
+    
     // Recursively turn that object into ASCII lines
     function buildLines(obj: Record<string, any>, prefix = '', isTail = true): string[] {
         const entries = Object.keys(obj);
@@ -77,7 +83,7 @@ export function activate(context: vscode.ExtensionContext) {
                             result += `\n// Skipped ${uri.fsPath}: Cannot open file as text.\n`;
                             continue;
                         }
-
+                        
                         const filePath = doc.uri.fsPath;
                         const relPath = vscode.workspace.asRelativePath(doc.uri);
                         relativePaths.push(relPath);
