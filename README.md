@@ -29,6 +29,9 @@ You can customize VCopy’s behavior using the following settings:
 
 - VS Code 1.70.0 or higher
 
+## Website
+A simple informational website is included in the `website/` folder. Open `website/index.html` in your browser to view it locally.
+
 ## Contributing
 
 Found a bug or have a feature request? Please open an issue on the repository.

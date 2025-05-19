@@ -1,0 +1,28 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background: #f9f9f9;
+}
+header {
+  background: #333;
+  color: white;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+}
+.logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 1em;
+}
+main {
+  padding: 1em;
+}
+footer {
+  text-align: center;
+  padding: 1em;
+  background: #333;
+  color: white;
+}
