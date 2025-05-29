@@ -4,7 +4,7 @@
   "displayName": "VCopy",
   "icon": "img/icon.png",
   "description": "From editor to AI and back—effortlessly.",
-  "version": "0.7.8",
+  "version": "0.8.0",
   "engines": {
     "vscode": "^1.70.0"
   },
@@ -12,7 +12,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:vcopy.generate"
+    "onCommand:vcopy.generate",
+    "onCommand:vcopy.copyPaths"
   ],
   "main": "./dist/extension.js",
   "repository": {
@@ -24,6 +25,10 @@
       {
         "command": "vcopy.generate",
         "title": "VCopy: Generate & Copy Workspace Content"
+      },
+      {
+        "command": "vcopy.copyPaths",
+        "title": "VCopy: Copy File Paths"
       }
     ],
     "keybindings": [
@@ -33,6 +38,14 @@
         "mac": "cmd+shift+c",
         "linux": "ctrl+shift+c",
         "win": "ctrl+shift+c",
+        "when": "workspaceFolderCount > 0"
+      },
+      {
+        "command": "vcopy.copyPaths",
+        "key": "cmd+shift+a",
+        "mac": "cmd+shift+a",
+        "linux": "ctrl+shift+a",
+        "win": "ctrl+shift+a",
         "when": "workspaceFolderCount > 0"
       }
     ],

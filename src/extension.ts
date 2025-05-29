@@ -160,7 +160,72 @@ export function activate(context: vscode.ExtensionContext) {
         }
     });
 
+    const copyPathsDisposable = vscode.commands.registerCommand('vcopy.copyPaths', async () => {
+        try {
+            const activeGroup = vscode.window.tabGroups.activeTabGroup;
+            if (!activeGroup || !activeGroup.tabs.length) {
+                vscode.window.showErrorMessage('No active tab group with tabs found.');
+                return;
+            }
+
+            await vscode.window.withProgress({
+                location: vscode.ProgressLocation.Notification,
+                title: "VCopy",
+                cancellable: false
+            }, async (progress) => {
+                // Start with initial message
+                progress.report({ message: 'Copying file paths...' });
+
+                const relativePaths: string[] = [];
+                let allFileContents = '';
+
+                // Collect relative paths and file contents for token counting
+                for (const tab of activeGroup.tabs) {
+                    if (tab.input && (tab.input as vscode.TabInputText).uri) {
+                        const uri = (tab.input as vscode.TabInputText).uri;
+                        const relPath = vscode.workspace.asRelativePath(uri);
+                        relativePaths.push(relPath);
+                        
+                        // Read file content for token counting (but don't include in clipboard)
+                        try {
+                            const doc = await vscode.workspace.openTextDocument(uri);
+                            allFileContents += doc.getText() + '\n';
+                        } catch (error) {
+                            // For binary files or read errors, just continue
+                            continue;
+                        }
+                    }
+                }
+
+                // Prepare clipboard content: just the paths, one per line
+                const pathsOutput = relativePaths.join('\n');
+                
+                // Count tokens for the file contents (to give user info about what they're working with)
+                const model = "gpt-3.5-turbo";
+                const encoder = encoding_for_model(model);
+                const tokens = encoder.encode(allFileContents);
+                const tokenCount = tokens.length;
+                encoder.free();
+                
+                // Copy only the paths to clipboard
+                await vscode.env.clipboard.writeText(pathsOutput);
+                
+                // Update progress notification with completion message
+                progress.report({ 
+                    message: `Copied ${relativePaths.length} file paths (${formatTokenCount(tokenCount)} tokens) to clipboard`,
+                    increment: 100 
+                });
+                
+                // Keep the notification visible for exactly 2 seconds
+                await new Promise(resolve => setTimeout(resolve, 2000));
+            });
+        } catch (error) {
+            vscode.window.showErrorMessage(`Error: ${error instanceof Error ? error.message : String(error)}`);
+        }
+    });
+
     context.subscriptions.push(disposable);
+    context.subscriptions.push(copyPathsDisposable);
 }
 
 export function deactivate() {}

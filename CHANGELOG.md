@@ -5,6 +5,14 @@ All notable changes to the VCopy extension will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2025-05-29
+
+### Added
+- New `vcopy.copyPaths` command that copies only the relative file paths to clipboard
+- Keyboard shortcut for copyPaths: Cmd+Shift+A (macOS) / Ctrl+Shift+A (Windows/Linux)
+- Token counting for copyPaths command to show the total tokens in the referenced files
+- Progress notification showing number of paths copied and total token count
+
 ## [0.7.8] - 2024-02-23
 
 ### Added
